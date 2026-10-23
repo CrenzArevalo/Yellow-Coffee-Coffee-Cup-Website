@@ -68,3 +68,21 @@ function escapeHtml(str) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
     });
 }
+
+async function loadGallery() {
+    try {
+        const response = await fetch('/api/get-printables');
+        if (response.ok) {
+            const data = await response.json();
+            // Pass the database items to your grid (assumes array is returned)
+            renderPrintablesGrid(data.data || data || []);
+        } else {
+            throw new Error("Failed to fetch");
+        }
+    } catch (error) {
+        console.error("Database connection error:", error);
+        renderPrintablesGrid([]); // Show empty "brewing" state if error
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadGallery);
