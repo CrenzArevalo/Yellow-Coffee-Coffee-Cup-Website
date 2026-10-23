@@ -53,7 +53,7 @@ function renderPrintablesGrid(items) {
 
         </div>
     `).join('');
-s
+    
     lucide.createIcons();
 }
 
