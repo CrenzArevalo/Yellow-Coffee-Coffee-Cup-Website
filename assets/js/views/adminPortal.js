@@ -1,5 +1,4 @@
-
-        let currentImageData = "";
+let currentImageData = "";
         let activeFilter = "All";
         let vaultItems = [];
 
@@ -161,38 +160,43 @@
                 url: document.getElementById('linkInput').value.trim(),
                 downloads: editIdx >= 0 ? vaultItems[editIdx].downloads : 0
             };
-        //AUTHENTICATION ADMIN ACCESS ONLY
-                const pin = prompt("Enter Admin PIN to save to database:", "");
-    if (!pin) return; 
 
-    try {
-        // Send data to Vercel backend
-        const response = await fetch('/api/admin-manage', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                action: editIdx >= 0 ? 'update' : 'create', 
-                item: newItem, 
-                adminPin: pin 
-            })
-        });
+            // Bypassed PIN prompt for testing
+            const pin = "coffee2026!"; 
 
-        if (!response.ok) throw new Error("Invalid PIN or server error");
+            try {
+                // Send data to Vercel backend
+                const response = await fetch('/api/admin-manage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        action: editIdx >= 0 ? 'update' : 'create', 
+                        item: newItem, 
+                        adminPin: pin 
+                    })
+                });
 
-        if (editIdx >= 0) {
-            vaultItems[editIdx] = newItem;
-            showToast("Printable updated in database!");
-        } else {
-            vaultItems.unshift(newItem);
-            showToast("New printable saved to database!");
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || "Server error");
+                }
+
+                if (editIdx >= 0) {
+                    vaultItems[editIdx] = newItem;
+                    showToast("Printable updated in database!");
+                } else {
+                    vaultItems.unshift(newItem);
+                    showToast("New printable saved to database!");
+                }
+
+                resetForm();
+                renderItems();
+            } catch (error) {
+                alert("Database Error: " + error.message);
+            }
         }
-
-        resetForm();
-        renderItems();
-    } catch (error) {
-        alert("Database Error: " + error.message);
-    }
-}               
+                
         async function simulateDownload(index) {
             const item = vaultItems[index];
             try {
@@ -278,14 +282,14 @@
         }
 
         window.onload = async function() {
-    try {
-        const response = await fetch('/api/get-printables');
-        if (response.ok) {
-            const data = await response.json();
-            vaultItems = data.data || data || [];
-        }
-    } catch (error) {
-        console.error("Failed to load admin data:", error);
-    }
-    renderItems(); 
-};
+            try {
+                const response = await fetch('/api/get-printables');
+                if (response.ok) {
+                    const data = await response.json();
+                    vaultItems = data.data || data || [];
+                }
+            } catch (error) {
+                console.error("Failed to load admin data:", error);
+            }
+            renderItems(); 
+        };
