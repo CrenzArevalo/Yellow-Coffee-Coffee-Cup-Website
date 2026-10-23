@@ -27,7 +27,10 @@ module.exports = async function handler(req, res) {
                 body: JSON.stringify(item)
             });
 
-            if (!response.ok) throw new Error('Failed to create item');
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Supabase Create Failed (${response.status}): ${errText}`);
+            }
             const data = await response.json();
             return res.status(200).json({ success: true, data });
         } 
@@ -43,7 +46,10 @@ module.exports = async function handler(req, res) {
                 body: JSON.stringify(item)
             });
 
-            if (!response.ok) throw new Error('Failed to update item');
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Supabase Update Failed (${response.status}): ${errText}`);
+            }
             const data = await response.json();
             return res.status(200).json({ success: true, data });
         }
@@ -56,7 +62,10 @@ module.exports = async function handler(req, res) {
                 }
             });
 
-            if (!response.ok) throw new Error('Failed to delete item');
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(`Supabase Delete Failed (${response.status}): ${errText}`);
+            }
             return res.status(200).json({ success: true });
         }
 
