@@ -13,6 +13,33 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
+<script>
+            tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cozyBg: '#FAF7f2',
+                        cozyCard: '#FFFFFF',
+                        cozyBorder: '#EFE7DA',
+                        yellowWarm: '#fde68a',
+                        yellowAccent: '#f59e0b',
+                        yellowDark: '#d97706',
+                        yellowSoft: '#FEF3C7',
+                        coffeeDark: '#3D342D',
+                        coffeeMuted: '#786C60',
+                        coffeeLight: '#A89A8B',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+
+                }
+            }
+        }
+       
+</script>
+
 <body class="bg-[#FAF7F2] text-[#3D342D] font-sans min-h-screen flex flex-col antialiased">
 
     <header class="bg-cozyBg/90 backdrop-blur-md border-b border-cozyBorder sticky top-0 z-30">
@@ -161,8 +188,14 @@
 
         </div>
     </footer>
-
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/data.js"></script>
     
+    <script src="assets/js/views/modalView.js"></script>
+    <script src="assets/js/views/publicGalery.js"></script>
+    <script src="assets/js/app.js"></script>
+
     <script>
         lucide.createIcons();
     </script>
