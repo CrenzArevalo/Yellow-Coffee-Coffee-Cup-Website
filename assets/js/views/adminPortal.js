@@ -1,51 +1,17 @@
 
         let currentImageData = "";
         let activeFilter = "All";
-        let vaultItems = [
-            {
-                id: 1,
-                title: "Calm Morning Reflection Sheets",
-                category: "Journal Page",
-                description: "Start your morning with quiet intention. Includes daily gratitude prompts, mood trackers, and mindfulness notes.",
-                format: "PDF • A4 & Letter",
-                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80",
-                url: "https://canva.com/design/example-1",
-                downloads: 142
-            },
-            {
-                id: 2,
-                title: "Weekly Creative Blueprint",
-                category: "Creative Notebook",
-                description: "A structured weekly layout designed for dreamers and notebook enthusiasts to map ideas over coffee.",
-                format: "PDF • High Res",
-                image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80",
-                url: "https://canva.com/design/example-2",
-                downloads: 98
-            },
-            {
-                id: 3,
-                title: "Cozy Affirmation Quote Cards",
-                category: "Reflection Cards",
-                description: "Cut-out affirmation cards featuring original thoughts from Yellow Coffee Cup to tuck inside your journal.",
-                format: "PDF • Cut-out Ready",
-                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80",
-                url: "https://canva.com/design/example-3",
-                downloads: 215
-            }
-        ];
-
+        let vaultItems = [];
 
         function renderItems() {
             const listContainer = document.getElementById('vaultItemsList');
             
-            // Calculate Total Downloads & Items
             const totalItems = vaultItems.length;
             const totalDownloads = vaultItems.reduce((acc, curr) => acc + curr.downloads, 0);
 
             document.getElementById('statTotalItems').innerText = totalItems;
             document.getElementById('statTotalDownloads').innerText = totalDownloads.toLocaleString();
 
-            // Calculate Most Popular Category
             const categoryCounts = {};
             vaultItems.forEach(item => {
                 categoryCounts[item.category] = (categoryCounts[item.category] || 0) + item.downloads;
@@ -80,7 +46,6 @@
             }
 
             listContainer.innerHTML = filtered.map((item) => {
-                // Find actual index in real array for operations
                 const realIndex = vaultItems.findIndex(i => i.id === item.id);
                 
                 return `
@@ -181,13 +146,11 @@
             document.getElementById('imagePreviewContainer').classList.add('hidden');
         }
 
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
             const editIdx = parseInt(document.getElementById('editIndex').value);
-            
-            // Fallback image if none uploaded
             const finalImage = currentImageData || "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80";
-
+        
             const newItem = {
                 id: editIdx >= 0 ? vaultItems[editIdx].id : Date.now(),
                 title: document.getElementById('titleInput').value.trim(),
@@ -198,36 +161,62 @@
                 url: document.getElementById('linkInput').value.trim(),
                 downloads: editIdx >= 0 ? vaultItems[editIdx].downloads : 0
             };
+        //AUTHENTICATION ADMIN ACCESS ONLY
+                const pin = prompt("Enter Admin PIN to save to database:", "");
+    if (!pin) return; 
 
-            if (editIdx >= 0) {
-                vaultItems[editIdx] = newItem;
-                showToast("Printable updated successfully!");
-            } else {
-                vaultItems.unshift(newItem);
-                showToast("New printable published with image!");
-            }
+    try {
+        // Send data to Vercel backend
+        const response = await fetch('/api/admin-manage', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                action: editIdx >= 0 ? 'update' : 'create', 
+                item: newItem, 
+                adminPin: pin 
+            })
+        });
 
-            resetForm();
-            renderItems();
+        if (!response.ok) throw new Error("Invalid PIN or server error");
+
+        if (editIdx >= 0) {
+            vaultItems[editIdx] = newItem;
+            showToast("Printable updated in database!");
+        } else {
+            vaultItems.unshift(newItem);
+            showToast("New printable saved to database!");
         }
 
-        function simulateDownload(index) {
-            vaultItems[index].downloads += 1;
-            renderItems();
-            showToast(`Realtime download count updated for "${vaultItems[index].title}"!`);
-        }
-
-
-        function filterCategory(category) {
-            activeFilter = category;
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                if (tab.innerText.toLowerCase().includes(category.toLowerCase()) || (category === 'All' && tab.innerText === 'All')) {
-                    tab.className = 'filter-tab px-3 py-1.5 rounded-full text-[11px] font-bold bg-yellowAccent text-white transition-all shrink-0';
+        resetForm();
+        renderItems();
+    } catch (error) {
+        alert("Database Error: " + error.message);
+    }
+}               
+        async function simulateDownload(index) {
+            const item = vaultItems[index];
+            try {
+                // Send request to your Vercel backend to increment in Supabase
+                const response = await fetch('/api/increment-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: item.id })
+                });
+        
+                if (response.ok) {
+                    item.downloads += 1;
+                    renderItems();
+                    showToast(`Realtime download count updated for "${item.title}"!`);
                 } else {
-                    tab.className = 'filter-tab px-3 py-1.5 rounded-full text-[11px] font-medium bg-cozyBg hover:bg-yellowSoft text-coffeeDark transition-all shrink-0';
+                    throw new Error("Failed to update download count");
                 }
-            });
-            renderItems();
+            } catch (error) {
+                console.error("Error updating download:", error);
+                // Fallback local update if API fails
+                item.downloads += 1;
+                renderItems();
+                showToast(`Download simulated locally for "${item.title}"!`);
+            }
         }
 
 
@@ -272,7 +261,6 @@
             removeImage();
         }
 
-        // Toast Helper
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = msg;
@@ -282,13 +270,22 @@
             }, 3000);
         }
 
-        // Sanitize string helper
+
         function escapeHtml(str) {
             return str.replace(/[&<>"']/g, function(m) {
                 return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
             });
         }
 
-        window.onload = function() {
-            renderItems();
-        };
+        window.onload = async function() {
+    try {
+        const response = await fetch('/api/get-printables');
+        if (response.ok) {
+            const data = await response.json();
+            vaultItems = data.data || data || [];
+        }
+    } catch (error) {
+        console.error("Failed to load admin data:", error);
+    }
+    renderItems(); 
+};
