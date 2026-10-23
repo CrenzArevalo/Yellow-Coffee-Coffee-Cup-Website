@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Coffee Cup Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cozyBg: '#FAF7f2',
+                        cozyCard: '#FFFFFF',
+                        cozyBorder: '#EFE7DA',
+                        yellowWarm: '#fde68a',
+                        yellowAccent: '#f59e0b',
+                        yellowDark: '#d97706',
+                        yellowSoft: '#FEF3C7',
+                        coffeeDark: '#3D342D',
+                        coffeeMuted: '#786C60',
+                        coffeeLight: '#A89A8B',
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#FAF7F2] text-[#3D342D] font-sans min-h-screen flex flex-col antialiased">
+
+    <header class="bg-cozyBg/90 backdrop-blur-md border-b border-cozyBorder sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent shadow-sm group-hover:rotate-6 transition-transform">
+                    <i data-lucide="coffee" class="w-6 h-6 stroke-[2.2]"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight block leading-none text-coffeeDark">Yellow Coffee Cup</span>
+                    <span class="text-[11px] text-coffeeMuted font-medium tracking-wide">PRINTABLE VAULT</span>
+                </div>
+            </a>
+            
+
+            <div class="flex items-center gap-3">
+                        <a href="https://www.facebook.com/profile.php?id=100093306341220" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full border border-cozyBorder hover:bg-cozyCard text-coffeeDark transition-colors">
+                            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                                    <span>Facebook Page</span>
+                        </a>
+                                <button onclick="openTipModal()" class="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full bg-yellowAccent text-white hover:bg-yellowDark shadow-sm transition-all hover:scale-105 active:scale-95">
+                                        <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
+                                            <span>Buy me a Coffee</span>
+                                    </button>
+            </div>
+    
+    </header>
+            <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-yellowSoft border border-yellowAccent/30 text-yellowDark text-xs font-semibold mb-4 shadow-sm">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                        <span>Calm Morning Thoughts & Creative Notebooks</span>
+                    </div>
+                        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-coffeeDark mb-4 leading-tight">
+                                Your Cozy Space for Mindful Printables
+                        </h1>
+                            <p class="text-coffeeMuted text-sm sm:text-base leading-relaxed mb-8">
+                                Explore free downloadable journal pages, reflection cards, and creative notebook sheets designed to bring peace to your daily routine.
+                            </p>
+
+        <div class="relative max-w-xl mx-auto">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-coffeeLight">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search printables by title or keyword..." class="w-full pl-11 pr-4 py-3.5 bg-cozyCard border border-cozyBorder rounded-2xl text-sm text-coffeeDark placeholder-coffeeLight focus:outline-none focus:ring-2 focus:ring-yellowAccent/50 focus:border-yellowAccent shadow-sm transition-all">
+            </div>
+        </div>
+
+
+        <div class="mb-6 flex items-center justify-between">
+            <h2 class="font-serif text-xl sm:text-2xl font-bold text-coffeeDark">Available Printables</h2>
+            <span id="itemCount" class="text-xs text-coffeeMuted font-medium bg-cozyCard px-3 py-1.5 rounded-full border border-cozyBorder">0 items in vault</span>
+        </div>
+
+
+        <div id="printablesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Items will be dynamically loaded here by JavaScript -->
+            <div id="emptyState" class="col-span-full py-16 text-center bg-cozyCard rounded-2xl border border-cozyBorder">
+                <div class="w-12 h-12 rounded-full bg-yellowSoft flex items-center justify-center mx-auto mb-3 text-yellowAccent">
+                    <i data-lucide="coffee" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-serif font-bold text-coffeeDark text-base mb-1">The vault is currently brewing...</h3>
+                <p class="text-coffeeMuted text-xs max-w-sm mx-auto">No printables have been published yet, or check back soon as new pages are added from the admin dashboard.</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="tipModal" class="fixed inset-0 z-50 flex items-center justify-center bg-coffeeDark/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-cozyCard border border-cozyBorder rounded-3xl p-6 sm:p-8 max-w-md w-full mx-4 shadow-xl transform scale-95 transition-transform duration-300 relative" id="modalContainer">
+            
+
+            <button onclick="closeTipModal()" class="absolute top-5 right-5 text-coffeeMuted hover:text-coffeeDark p-1 rounded-full hover:bg-cozyBg transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+  
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent mx-auto mb-3 shadow-xs">
+                    <i data-lucide="coffee" class="w-6 h-6 stroke-[2.2]"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-coffeeDark mb-1">Fuel the Creative Cups</h3>
+                <p class="text-coffeeMuted text-xs leading-relaxed">
+                    If these free printables brought calm to your morning, consider treating the creator to a warm cup of coffee! ☕✨
+                </p>
+            </div>
+
+
+            <div class="grid grid-cols-3 gap-3 mb-5">
+                <button type="button" onclick="selectTipAmount('₱50', this)" class="tip-btn py-3 px-2 rounded-2xl border border-cozyBorder bg-cozyBg text-coffeeDark font-bold text-sm hover:border-yellowAccent hover:bg-yellowSoft/40 transition-all text-center">
+                    ☕ ₱50 <span class="block text-[10px] text-coffeeMuted font-normal">1 Cup</span>
+                </button>
+                <button type="button" onclick="selectTipAmount('₱150', this)" class="tip-btn py-3 px-2 rounded-2xl border-2 border-yellowAccent bg-yellowSoft/30 text-coffeeDark font-bold text-sm transition-all text-center shadow-xs">
+                    🥐 ₱150 <span class="block text-[10px] text-coffeeMuted font-normal">Coffee & Pastry</span>
+                </button>
+                <button type="button" onclick="selectTipAmount('₱300', this)" class="tip-btn py-3 px-2 rounded-2xl border border-cozyBorder bg-cozyBg text-coffeeDark font-bold text-sm hover:border-yellowAccent hover:bg-yellowSoft/40 transition-all text-center">
+                    🍯 ₱300 <span class="block text-[10px] text-coffeeMuted font-normal">Bag of Beans</span>
+                </button>
+            </div>
+
+
+            <div class="bg-cozyBg p-4 rounded-2xl border border-cozyBorder mb-6 text-center">
+                <p class="text-xs text-coffeeDark font-medium mb-1">Send via GCash / Maya / QR</p>
+                <p id="selectedTipText" class="text-xs text-yellowDark font-bold mb-3">Selected: ₱150 (Coffee & Pastry)</p>
+                <div class="flex items-center justify-center gap-2">
+                    <input type="text" readonly value="0917-123-4567 (Yellow Coffee Cup)" id="creatorAccount" class="bg-cozyCard border border-cozyBorder rounded-xl px-3 py-2 text-xs text-coffeeDark w-full text-center select-all focus:outline-none">
+                    <button onclick="copyAccountInfo()" class="bg-yellowAccent hover:bg-yellowDark text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-now">
+                        Copy
+                    </button>
+                </div>
+            </div>
+
+
+            <button onclick="closeTipModal()" class="w-full py-3.5 rounded-xl bg-coffeeDark text-cozyCard font-bold text-xs hover:bg-coffeeMuted transition-colors shadow-sm">
+                Thank you for supporting! 💛
+            </button>
+        </div>
+    </div>
+    
+                <!-- Footer Section -->
+                            <footer class="bg-coffeeDark border-t border-cozyBorder mt-16 py-10">
+                                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                        
+
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent">
+                                                <i data-lucide="coffee" class="w-4 h-4 stroke-[2.2]"></i>
+                                    </div>
+                            <div>
+                                <span class="font-serif font-bold text-white text-sm">Yellow Coffee Cup</span>
+                                <p class="text-[11px] text-coffeeLight">Calm morning thoughts & free Canva printables.</p>
+                            </div>
+                        </div>
+
+            <!-- Copyright & Credits -->
+            <div class="text-center sm:text-right">
+                <p class="text-xs text-white">
+                    © 2026 Yellow Coffee Cup. Made with mindful intention.
+                </p>
+                <p class="text-[10px] text-coffeeLight mt-0.5">
+                    Printable Vault • Designed for quiet productivity.
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+    
+    <script>
+        lucide.createIcons();
+    </script>
+    
+</body>
+</html>
