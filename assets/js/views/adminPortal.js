@@ -245,17 +245,36 @@ let currentImageData = "";
         }
 
 
-        function deleteItem(index) {
-            const confirmed = confirm(`Are you sure you want to remove "${vaultItems[index].title}" from the Vault Library?`);
+async function deleteItem(index) {
+            const item = vaultItems[index];
+            const confirmed = confirm(`Are you sure you want to permanently remove "${item.title}" from the Vault Library?`);
+            
             if (confirmed) {
-                vaultItems.splice(index, 1);
-                showToast("Item removed from Library.");
-                resetForm();
-                renderItems();
+                try {
+                    const response = await fetch('/api/admin-manage', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            action: 'delete', 
+                            id: item.id, // Sends the specific database ID to delete
+                            adminPin: "coffee2026!" 
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const result = await response.json();
+                        throw new Error(result.error || "Failed to delete from database");
+                    }
+                    vaultItems.splice(index, 1);
+                    showToast("Item permanently removed from database.");
+                    resetForm();
+                    renderItems();
+                } catch (error) {
+                    alert("Database Error: " + error.message);
+                }
             }
         }
 
-        // Reset Form
         function resetForm() {
             document.getElementById('printableForm').reset();
             document.getElementById('editIndex').value = "-1";
