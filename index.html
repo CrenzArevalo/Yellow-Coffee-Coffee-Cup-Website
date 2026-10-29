@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yellow Coffee Cup Vault</title>
+    <title>Yellow Coffee Cup - Printable Vault</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,14 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-</head>
 
-<script>
-            tailwind.config = {
+    <script>
+        tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cozyBg: '#FAF7f2',
+                        cozyBg: '#FAF7F2',
                         cozyCard: '#FFFFFF',
                         cozyBorder: '#EFE7DA',
                         yellowWarm: '#fde68a',
@@ -33,172 +32,255 @@
                         sans: ['Outfit', 'sans-serif'],
                         serif: ['Playfair Display', 'serif']
                     }
-
                 }
             }
         }
-       
-</script>
+    </script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
 
-<body class="bg-[#FAF7F2] text-[#3D342D] font-sans min-h-screen flex flex-col antialiased">
+<body class="bg-cozyBg text-coffeeDark font-sans min-h-screen flex flex-col antialiased">
 
-    <header class="bg-cozyBg/90 backdrop-blur-md border-b border-cozyBorder sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent shadow-sm group-hover:rotate-6 transition-transform">
-                    <i data-lucide="coffee" class="w-6 h-6 stroke-[2.2]"></i>
-                </div>
-                <div>
-                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight block leading-none text-coffeeDark">Yellow Coffee Cup</span>
-                    <span class="text-[11px] text-coffeeMuted font-medium tracking-wide">PRINTABLE VAULT</span>
-                </div>
+    <div class="bg-[#2D241F] text-white text-[10px] sm:text-xs font-medium py-2 px-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></div>
+            <span class="text-coffeeLight hidden sm:inline">Portal Mode:</span> 
+            <span class="font-bold text-yellowWarm">Public Visitor View</span>
+        </div>
+        <div class="flex items-center gap-1 sm:gap-2">
+            <a href="#" class="px-3 py-1 rounded-full bg-yellowSoft text-coffeeDark font-bold flex items-center gap-1.5 transition-transform hover:scale-105">
+                <i data-lucide="eye" class="w-3 h-3"></i> <span class="hidden sm:inline">Public Visitor View</span>
             </a>
-            
-
-            <div class="flex items-center gap-3">
-                        <a href="https://www.facebook.com/profile.php?id=100093306341220" target="_blank" rel="noopener noreferrer" class="hidden md:flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full border border-cozyBorder hover:bg-cozyCard text-coffeeDark transition-colors">
-                            <svg class="w-4 h-4 text-blue-600 fill-current" viewBox="0 0 24 24">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                                    <span>Facebook Page</span>
-                        </a>
-                                <button onclick="openTipModal()" class="flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full bg-yellowAccent text-white hover:bg-yellowDark shadow-sm transition-all hover:scale-105 active:scale-95">
-                                        <i data-lucide="heart" class="w-4 h-4 fill-white"></i>
-                                            <span>Buy me a Coffee</span>
-                                    </button>
-            </div>
-    
-    </header>
-            <main class="flex-grow max-w-7xl mx-auto px-4 py-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-yellowSoft border border-yellowAccent/30 text-yellowDark text-xs font-semibold mb-4 shadow-sm">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-                        <span>Calm Morning Thoughts & Creative Notebooks</span>
-                    </div>
-                        <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-coffeeDark mb-4 leading-tight">
-                                Your Cozy Space for Mindful Printables
-                        </h1>
-                            <p class="text-coffeeMuted text-sm sm:text-base leading-relaxed mb-8">
-                                Explore free downloadable journal pages, reflection cards, and creative notebook sheets designed to bring peace to your daily routine.
-                            </p>
-
-        <div class="relative max-w-xl mx-auto">
-                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-coffeeLight">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                </div>
-                <input type="text" id="searchInput" placeholder="Search printables by title or keyword..." class="w-full pl-11 pr-4 py-3.5 bg-cozyCard border border-cozyBorder rounded-2xl text-sm text-coffeeDark placeholder-coffeeLight focus:outline-none focus:ring-2 focus:ring-yellowAccent/50 focus:border-yellowAccent shadow-sm transition-all">
-            </div>
-        </div>
-
-
-        <div class="mb-6 flex items-center justify-between">
-            <h2 class="font-serif text-xl sm:text-2xl font-bold text-coffeeDark">Available Printables</h2>
-            <span id="itemCount" class="text-xs text-coffeeMuted font-medium bg-cozyCard px-3 py-1.5 rounded-full border border-cozyBorder">0 items in vault</span>
-        </div>
-
-
-        <div id="printablesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Items will be dynamically loaded here by JavaScript -->
-            <div id="emptyState" class="col-span-full py-16 text-center bg-cozyCard rounded-2xl border border-cozyBorder">
-                <div class="w-12 h-12 rounded-full bg-yellowSoft flex items-center justify-center mx-auto mb-3 text-yellowAccent">
-                    <i data-lucide="coffee" class="w-6 h-6"></i>
-                </div>
-                <h3 class="font-serif font-bold text-coffeeDark text-base mb-1">The vault is currently brewing...</h3>
-                <p class="text-coffeeMuted text-xs max-w-sm mx-auto">No printables have been published yet, or check back soon as new pages are added from the admin dashboard.</p>
-            </div>
-        </div>
-    </main>
-
-    <div id="tipModal" class="fixed inset-0 z-50 flex items-center justify-center bg-coffeeDark/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-cozyCard border border-cozyBorder rounded-3xl p-6 sm:p-8 max-w-md w-full mx-4 shadow-xl transform scale-95 transition-transform duration-300 relative" id="modalContainer">
-            
-
-            <button onclick="closeTipModal()" class="absolute top-5 right-5 text-coffeeMuted hover:text-coffeeDark p-1 rounded-full hover:bg-cozyBg transition-colors">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-  
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 rounded-2xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent mx-auto mb-3 shadow-xs">
-                    <i data-lucide="coffee" class="w-6 h-6 stroke-[2.2]"></i>
-                </div>
-                <h3 class="font-serif text-2xl font-bold text-coffeeDark mb-1">Fuel the Creative Cups</h3>
-                <p class="text-coffeeMuted text-xs leading-relaxed">
-                    If these free printables brought calm to your morning, consider treating the creator to a warm cup of coffee! ☕✨
-                </p>
-            </div>
-
-
-            <div class="grid grid-cols-3 gap-3 mb-5">
-                <button type="button" onclick="selectTipAmount('₱50', this)" class="tip-btn py-3 px-2 rounded-2xl border border-cozyBorder bg-cozyBg text-coffeeDark font-bold text-sm hover:border-yellowAccent hover:bg-yellowSoft/40 transition-all text-center">
-                    ☕ ₱50 <span class="block text-[10px] text-coffeeMuted font-normal">1 Cup</span>
-                </button>
-                <button type="button" onclick="selectTipAmount('₱150', this)" class="tip-btn py-3 px-2 rounded-2xl border-2 border-yellowAccent bg-yellowSoft/30 text-coffeeDark font-bold text-sm transition-all text-center shadow-xs">
-                    🥐 ₱150 <span class="block text-[10px] text-coffeeMuted font-normal">Coffee & Pastry</span>
-                </button>
-                <button type="button" onclick="selectTipAmount('₱300', this)" class="tip-btn py-3 px-2 rounded-2xl border border-cozyBorder bg-cozyBg text-coffeeDark font-bold text-sm hover:border-yellowAccent hover:bg-yellowSoft/40 transition-all text-center">
-                    🍯 ₱300 <span class="block text-[10px] text-coffeeMuted font-normal">Bag of Beans</span>
-                </button>
-            </div>
-
-
-            <div class="bg-cozyBg p-4 rounded-2xl border border-cozyBorder mb-6 text-center">
-                <p class="text-xs text-coffeeDark font-medium mb-1">Send via GCash / Maya / QR</p>
-                <p id="selectedTipText" class="text-xs text-yellowDark font-bold mb-3">Selected: ₱150 (Coffee & Pastry)</p>
-                <div class="flex items-center justify-center gap-2">
-                    <input type="text" readonly value="0917-123-4567 (Yellow Coffee Cup)" id="creatorAccount" class="bg-cozyCard border border-cozyBorder rounded-xl px-3 py-2 text-xs text-coffeeDark w-full text-center select-all focus:outline-none">
-                    <button onclick="copyAccountInfo()" class="bg-yellowAccent hover:bg-yellowDark text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-now">
-                        Copy
-                    </button>
-                </div>
-            </div>
-
-
-            <button onclick="closeTipModal()" class="w-full py-3.5 rounded-xl bg-coffeeDark text-cozyCard font-bold text-xs hover:bg-coffeeMuted transition-colors shadow-sm">
-                Thank you for supporting! 💛
-            </button>
+            <a href="admin.html" class="px-3 py-1 rounded-full hover:bg-white/10 text-coffeeLight transition-colors flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-3 h-3"></i> <span class="hidden sm:inline">Owner Admin Portal</span>
+            </a>
         </div>
     </div>
-    
-                <!-- Footer Section -->
-                            <footer class="bg-coffeeDark border-t border-cozyBorder mt-16 py-10">
-                                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-                        
 
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 rounded-xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent">
-                                                <i data-lucide="coffee" class="w-4 h-4 stroke-[2.2]"></i>
-                                    </div>
-                            <div>
-                                <span class="font-serif font-bold text-white text-sm">Yellow Coffee Cup</span>
-                                <p class="text-[11px] text-coffeeLight">Calm morning thoughts & free Canva printables.</p>
-                            </div>
-                        </div>
-
-            <!-- Copyright & Credits -->
-            <div class="text-center sm:text-right">
-                <p class="text-xs text-white">
-                    © 2026 Yellow Coffee Cup. Made with mindful intention.
-                </p>
-                <p class="text-[10px] text-coffeeLight mt-0.5">
-                    Printable Vault • Designed for quiet productivity.
-                </p>
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between w-full">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-yellowSoft border border-yellowAccent/30 flex items-center justify-center text-yellowAccent shadow-sm">
+                <i data-lucide="coffee" class="w-6 h-6 stroke-[2.2]"></i>
             </div>
+            <div>
+                <h1 class="font-serif text-2xl font-bold text-coffeeDark leading-none">Yellow Coffee Cup</h1>
+                <span class="text-[10px] text-coffeeMuted font-bold tracking-widest uppercase">Printable Vault</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <a href="#" class="hidden sm:flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-full border border-cozyBorder bg-white hover:bg-cozyBg text-coffeeDark transition-all shadow-sm">
+                <i data-lucide="facebook" class="w-4 h-4 text-blue-600"></i> Facebook Page
+            </a>
+            <a href="https://paypal.me/yourusername" target="_blank" class="flex items-center gap-2 text-xs font-bold px-5 py-2.5 rounded-full bg-[#0070ba] hover:bg-[#005ea6] text-white transition-all shadow-sm hover:-translate-y-0.5">
+                <i data-lucide="heart" class="w-4 h-4 fill-white text-white"></i> Support via PayPal
+            </a>
+        </div>
+    </header>
 
+    <main class="flex-grow w-full">
+        
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
+            <div class="bg-[#FDF6E3] rounded-[2rem] p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between border border-yellowWarm/20 shadow-sm">
+                
+                <div class="relative z-10 max-w-2xl">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-yellowWarm/30 text-yellowDark text-[11px] font-bold mb-6">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> 100% Free Journal Printables & Packs
+                    </div>
+                    
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-[3.5rem] font-bold text-coffeeDark leading-[1.1] mb-5 tracking-tight">
+                        Warm morning thoughts & <br/>compiled journal sheets.
+                    </h2>
+                    
+                    <p class="text-coffeeMuted text-sm sm:text-base max-w-xl mb-8 leading-relaxed">
+                        Welcome to our printable library! Download individual daily sheets or curated bundle packs compiled directly by the creator.
+                    </p>
+                    
+                    <div class="relative max-w-lg">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i data-lucide="search" class="w-4 h-4 text-coffeeLight"></i>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Search by title, category, or bundle pack..." class="w-full pl-11 pr-4 py-3.5 bg-white border border-cozyBorder rounded-2xl text-sm text-coffeeDark placeholder-coffeeLight focus:outline-none focus:ring-2 focus:ring-yellowAccent shadow-sm transition-all">
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex absolute right-12 bottom-0 opacity-80 pointer-events-none">
+                    <svg width="280" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Steam -->
+                        <path d="M160 80C160 85.5 155.5 90 150 90C144.5 90 140 85.5 140 80V50C140 44.5 144.5 40 150 40C155.5 40 160 44.5 160 50V80Z" fill="#FDE68A"/>
+                        <path d="M120 80C120 85.5 115.5 90 110 90C104.5 90 100 85.5 100 80V50C100 44.5 104.5 40 110 40C115.5 40 120 44.5 120 50V80Z" fill="#FDE68A"/>
+                        <path d="M80 80C80 85.5 75.5 90 70 90C64.5 90 60 85.5 60 80V50C60 44.5 64.5 40 70 40C75.5 40 80 44.5 80 50V80Z" fill="#FDE68A"/>
+                        <!-- Cup Body & Handle -->
+                        <rect x="30" y="110" width="160" height="140" rx="35" fill="#FDE68A" fill-opacity="0.4"/>
+                        <rect x="45" y="125" width="130" height="125" rx="25" fill="#FFFBEB"/>
+                        <path d="M190 135H205C224.33 135 240 150.67 240 170C240 189.33 224.33 205 205 205H190" stroke="#FDE68A" stroke-opacity="0.4" stroke-width="24" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 mb-8">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                
+                <div class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide" id="filterContainer">
+                    <button class="filter-btn px-5 py-2 rounded-full text-xs font-bold bg-yellowAccent text-white shrink-0 shadow-sm" data-category="All">All</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-xs font-medium bg-white border border-cozyBorder hover:bg-cozyBg text-coffeeDark transition-colors shrink-0" data-category="Morning Thoughts">Morning Thoughts</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-xs font-medium bg-white border border-cozyBorder hover:bg-cozyBg text-coffeeDark transition-colors shrink-0" data-category="Daily Reflections">Daily Reflections</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-xs font-medium bg-white border border-cozyBorder hover:bg-cozyBg text-coffeeDark transition-colors shrink-0" data-category="Habit & Planners">Habit & Planners</button>
+                    <button class="filter-btn px-5 py-2 rounded-full text-xs font-medium bg-white border border-cozyBorder hover:bg-cozyBg text-coffeeDark transition-colors shrink-0 flex items-center gap-1.5" data-category="Bundle Packs"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-yellowAccent"></i> Bundle Packs</button>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#FDF6E3] border border-yellowWarm/40 text-[11px] text-coffeeMuted font-medium shrink-0">
+                    <i data-lucide="info" class="w-3.5 h-3.5 text-yellowDark"></i> Free for personal printing. Keep branding intact!
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+            <div id="publicVaultGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-coffeeDark text-white py-12 border-t border-cozyBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-yellowSoft flex items-center justify-center text-yellowAccent">
+                    <i data-lucide="coffee" class="w-5 h-5 stroke-[2.2]"></i>
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-white text-base">Yellow Coffee Cup</span>
+                    <p class="text-[11px] text-coffeeLight">Calm morning thoughts & free Canva printables.</p>
+                </div>
+            </div>
+            <div class="text-center sm:text-right">
+                <p class="text-xs text-white">© 2026 Yellow Coffee Cup. Made with mindful intention.</p>
+                <p class="text-[10px] text-coffeeLight mt-1">Printable Vault • Designed for quiet productivity.</p>
+            </div>
         </div>
     </footer>
-    
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/data.js"></script>
-
-    <script src="assets/js/views/modalView.js"></script>
-    <script src="assets/js/views/publicGalery.js"></script>
-    <script src="assets/js/app.js"></script>
 
     <script>
         lucide.createIcons();
+
+        let printables = [];
+        let activeFilter = 'All';
+        const grid = document.getElementById('publicVaultGrid');
+        
+        function getCategoryStyle(category) {
+            if (category === 'Bundle Packs') {
+                return { bg: 'bg-yellowDark', text: 'text-white', icon: '<i data-lucide="layers" class="w-3 h-3"></i>' };
+            }
+            return { bg: 'bg-white', text: 'text-coffeeDark', icon: '' };
+        }
+
+        function renderGrid(items) {
+            if (items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-20 text-center">
+                        <i data-lucide="ghost" class="w-12 h-12 text-cozyBorder mx-auto mb-4"></i>
+                        <h3 class="font-serif text-xl text-coffeeDark mb-2">Nothing here yet!</h3>
+                        <p class="text-sm text-coffeeMuted">Check back soon for new printables.</p>
+                    </div>`;
+                lucide.createIcons();
+                return;
+            }
+
+            grid.innerHTML = items.map(item => {
+                const badgeStyle = getCategoryStyle(item.category);
+                
+                return `
+                <div class="bg-white border border-cozyBorder rounded-[2rem] overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col">
+                    
+                    <!-- Top Image Block with Quick Preview Hover -->
+                    <div class="w-full h-64 bg-cozyBg relative overflow-hidden flex items-center justify-center p-6">
+                        <img src="${item.image || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'}" alt="${item.title}" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700 shadow-sm">
+                        
+                        <!-- Floating Top-Left Tag -->
+                        <span class="absolute top-5 left-5 ${badgeStyle.bg} ${badgeStyle.text} text-[9px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5 z-10">
+                            ${badgeStyle.icon} ${item.category}
+                        </span>
+
+                        <!-- Quick Preview Button -->
+                        <div class="absolute inset-0 bg-coffeeDark/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 backdrop-blur-[2px]">
+                            <a href="${item.url}" target="_blank" class="px-5 py-2.5 bg-white text-coffeeDark text-xs font-bold rounded-full shadow-lg flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:scale-105">
+                                <i data-lucide="eye" class="w-4 h-4 text-yellowAccent"></i> Quick Preview
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Content Block -->
+                    <div class="p-6 sm:p-8 flex-grow flex flex-col">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-bold text-yellowDark bg-yellowWarm/30 px-2.5 py-1 rounded-md uppercase tracking-wider">${item.category}</span>
+                            <span class="text-[10px] text-coffeeLight font-medium">Oct 2026</span>
+                        </div>
+                        
+                        <h3 class="font-serif font-bold text-xl text-yellowDark mb-2 leading-tight group-hover:text-yellowAccent transition-colors">
+                            ${item.title}
+                        </h3>
+                        
+                        <p class="text-coffeeMuted text-xs leading-relaxed line-clamp-2 mb-6">
+                            ${item.description}
+                        </p>
+                        
+                        <div class="mt-auto flex items-center justify-between border-t border-cozyBorder pt-4">
+                            <span class="text-[10px] text-coffeeLight font-medium tracking-wide uppercase">${item.format}</span>
+                            <a href="${item.url}" target="_blank" class="text-[11px] font-bold text-yellowAccent hover:text-yellowDark flex items-center gap-1.5 transition-colors group/link">
+                                Download <i data-lucide="arrow-down-to-line" class="w-3.5 h-3.5 group-hover/link:translate-y-0.5 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+            
+            lucide.createIcons();
+        }
+
+        async function fetchPrintables() {
+            try {
+                const response = await fetch('/api/get-printables');
+                if (response.ok) {
+                    const data = await response.json();
+                    printables = data.data || data || [];
+                    renderGrid(printables);
+                }
+            } catch (error) {
+                console.error("Failed to load printables:", error);
+            }
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-yellowAccent', 'text-white', 'font-bold');
+                    b.classList.add('bg-white', 'text-coffeeDark', 'font-medium');
+                });
+                const target = e.currentTarget;
+                target.classList.remove('bg-white', 'text-coffeeDark', 'font-medium');
+                target.classList.add('bg-yellowAccent', 'text-white', 'font-bold');
+                
+                activeFilter = target.dataset.category;
+                const filtered = activeFilter === 'All' ? printables : printables.filter(p => p.category === activeFilter);
+                renderGrid(filtered);
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const searched = printables.filter(p => 
+                p.title.toLowerCase().includes(term) || 
+                p.category.toLowerCase().includes(term) || 
+                p.description.toLowerCase().includes(term)
+            );
+            renderGrid(searched);
+        });
+        fetchPrintables();
     </script>
-    
 </body>
 </html>
